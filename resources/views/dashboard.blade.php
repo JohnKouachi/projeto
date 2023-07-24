@@ -9,6 +9,54 @@
         <div class="col-md-10 offset-md-1 dashboard-tittle-container">
             <h1>Dashboard Admin</h1>
 <br>
+
+            <h1>Usuários</h1>
+                @if(!is_null($users) && count($users) > 0)
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Tipo de Usuário</th>
+                                    <th scope="col">Alterar Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $index => $user)
+                                    <tr>
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            @if($user->userType)
+                                                {{ $user->userType->name }}
+                                            @else
+                                                No User Type
+                                            @endif
+                                        </td>
+                                        <td>
+                                        <form action="/users/{{ $user->id }}/update-type" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="input-group">
+                                                <select class="form-select" name="user_type_id">
+                                                    @foreach ($userTypeOptions as $value => $label)
+                                                        <option value="{{ $value }}" {{ optional($user->userType)->id == $value ? 'selected' : '' }}>{{ $label }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                            </div>
+                                        </form>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p>Não existem usuários cadastrados.</p>
+                    @endif
             <h1>Publicações</h1>
 
 

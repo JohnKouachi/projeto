@@ -36,10 +36,8 @@ Route::get('/criarAssistencia', [ControllerSite::class, 'Passist']);
 Route::post('/Gassistencia', [ControllerSite::class, 'Gassist']);
 
 
-Route::get('/quemSomos', [YourController::class, 'quemSomos']);
-
-
-
+Route::get('/quemSomos', [ControllerSite::class, 'quemSomos']);
 
 Route::get('/dashboard', [ControllerSite::class, 'dashboard'])-> middleware('auth');
 
+Route::put('/users/{user}/update-type', [ControllerSite::class, 'updateUserType']);

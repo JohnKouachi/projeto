@@ -8,6 +8,8 @@ use App\models\publicacao;
 
 use App\models\assistencia;
 use App\models\User;
+use App\Models\UserType;
+
 
 class ControllerSite extends Controller
 {
@@ -140,20 +142,28 @@ class ControllerSite extends Controller
 
     
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $user = auth()->user();
-
+    
         $assistencia = $user->assistencias;
-
+    
         $publicacao = publicacao::all();
-
+    
         $assistenciaAll = assistencia::all();
-        
-
-
-        return view('/dashboard',['assistencia' => $assistencia,'publicacao'=>$publicacao,'assistencias' => $assistenciaAll]);
+    
+        $users = User::select('id', 'name', 'email', 'user_type_id')->get();
+    
+        $userTypeOptions = UserType::pluck('name', 'id')->toArray();
+    
+        return view('dashboard', [
+            'assistencia' => $assistencia,
+            'publicacao' => $publicacao,
+            'assistencias' => $assistenciaAll,
+            'users' => $users,
+            'userTypeOptions' => $userTypeOptions,
+        ]);
     }
-
 
     public function assistEdit($id){
         $assistencia=assistencia::findOrFail($id);
@@ -171,7 +181,18 @@ class ControllerSite extends Controller
 
     }
    
-
+    public function updateUserType(Request $request, $userId)
+    {
+        $request->validate([
+            'user_type_id' => 'required|exists:user_types,id',
+        ]);
+    
+        $user = User::findOrFail($userId);
+        $user->user_type_id = $request->user_type_id;
+        $user->save();
+    
+        return back()->with('success', 'User type updated successfully.');
+    }
 
 
     
