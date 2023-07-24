@@ -7,8 +7,9 @@
 
         
         <div class="col-md-10 offset-md-1 dashboard-tittle-container">
+        @if (auth()->check() && auth()->user()->user_type_id === 1)
             <h1>Dashboard Admin</h1>
-<br>
+            <br>
 
             <h1>Usuários</h1>
                 @if(!is_null($users) && count($users) > 0)
@@ -57,10 +58,10 @@
                     @else
                         <p>Não existem usuários cadastrados.</p>
                     @endif
+            @endif
+            @if (auth()->check() && (auth()->user()->user_type_id === 1 || auth()->user()->user_type_id === 3))
             <h1>Publicações</h1>
-
-
-            
+           
             @if(count($publicacao) > 0)
                          
                 
@@ -117,16 +118,12 @@
             @endif           
 
         </div>
-
+        
         <div class="col-md-10 offset-md-1 ">
        
                         
        <h1>Pedidos de assistencia</h1>
 
-      
-
-            
-   
    <table class="table">
        <thead>
            <tr>
@@ -180,10 +177,10 @@
                   
 
        </div>
-        
+       @endif  
 
         
-
+       @if (auth()->check() && auth()->user()->user_type_id === 2)
         <div class="col-md-10 offset-md-1 dashboard-tittle-container">
             <h1>Meus pedidos de assistencia</h1>
   
@@ -247,7 +244,7 @@
 
            @endif
         </div>
-
+        @endif
 
 
         

@@ -48,9 +48,7 @@
                         containerMensagens.empty().append(errorContainer);
                         </script>
                         @endif
-                                    
-                        
-
+                              
                             <form action="/Gassistencia" method="POST" class="signin-form">
                                 @csrf
                                 <div class="form-group">
@@ -58,26 +56,18 @@
                                     <input type="text" id="titulo" class="form-control" placeholder="Titulo" name="titulo" required>
                                 </div>
                                 <br>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Breve descrição:</label>
-                                    <input type="text" id="descricao" class="form-control" placeholder="Descrição" name="descricao" required>
-                                </div>
-                                <br>
+                                
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Descrição do problema:</label>
-                                    <textarea class="form-control" id="texto" name="texto" rows="3"></textarea>
+                                    <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
                                 </div>
-                                <br>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Estado</label>
-                                    <input type="text" id="estado" class="form-control" placeholder="Estado" name="estado" required>
-                                </div>
+                                <input type="hidden" name="estado" value="Pendente">
                                 <br>
                                 <input  type="submit" class=" btn btn-primary" value="Criar Pedido">
                                 
                             </form>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
     </div>

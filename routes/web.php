@@ -35,6 +35,8 @@ Route::put('/assistencia/update/{id}',[ControllerSite::class, 'assistUpdate']);
 Route::get('/criarAssistencia', [ControllerSite::class, 'Passist']);
 Route::post('/Gassistencia', [ControllerSite::class, 'Gassist']);
 
+Route::put('/assistencia/{id}/update', [ControllerSite::class, 'updateAssistencia']);
+
 
 Route::get('/quemSomos', [ControllerSite::class, 'quemSomos']);
 

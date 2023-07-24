@@ -49,16 +49,56 @@
                 @auth
                 <li class="nav-item"><a class="nav-link" href="/assistencia">Pedidos</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li> -->
+
+                @if (auth()->check() && (auth()->user()->user_type_id === 1))
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Admin
                     </a>
+                   
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        
                         <li><a class="dropdown-item" href="/criarPublicacao">Criar publicação</a></li>
+                        
                     </ul>
+                    
                 </li>
+                @endif
+
+                @if (auth()->check() && (auth()->user()->user_type_id === 2 || auth()->user()->user_type_id === 1))
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gerir pedidos
+                    </a>
+                   
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        
+                        <li><a class="dropdown-item" href="/criarAssistencia">Pedir assistencia</a></li>
+                    </ul>
+                    
+                </li>
+                @endif
+
+                @if (auth()->check() && (auth()->user()->user_type_id === 3 || auth()->user()->user_type_id === 1 ))
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                   
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        
+                        <li><a class="dropdown-item" href="/criarPublicacao">Criar publicação</a></li>
+                        
+                    </ul>
+                    
+                </li>
+                @endif
                 <li class="nav-item">
                     <form action="/logout" method="POST">
                         @csrf

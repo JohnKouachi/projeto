@@ -11,7 +11,55 @@
                 <p>Descrição: {{ $assistencia->texto }}</p>
                 <p>Estado: {{ $assistencia->estado }}</p>
                 <p>Pedido por: {{ $assistenciaDono['name'] }}</p>
-                <a class="btn btn-primary" href="#" role="button">Aceitar Pedido</a>
+                @if (auth()->check() && (auth()->user()->user_type_id === 1 || auth()->user()->user_type_id === 3))
+                    @if ($assistencia->estado != 'resolvido')
+                        @if ($assistencia->estado != 'recusado')
+                            <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary" name="estado" value="aceite">Aceitar</button>
+                            </form>
+                            <br>
+                            <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-danger" name="estado" value="recusado">Recusar</button>
+                            </form>
+                            <br>
+                            @if ($assistencia->estado === 'aceite')
+                                <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary" name="estado" value="resolvido">Resolvido</button>
+                                </form>
+                            @endif
+                        @endif
+                    @else
+                        
+                    @endif
+
+                @endif
+                @if (auth()->check() && (auth()->user()->user_type_id === 1))
+                <h1>Menu admin</h1>
+                    <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-primary" name="estado" value="aceite">Aceitar</button>
+                    </form>
+                    <br>
+                    <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-danger" name="estado" value="recusado">Recusar</button>
+                    </form>     
+                    <br>  
+                    <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-primary" name="estado" value="resolvido">Resolvido</button>
+                    </form>
+                @endif
+
             </div>
         </div>
     </div>

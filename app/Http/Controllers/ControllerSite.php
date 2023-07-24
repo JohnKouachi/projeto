@@ -83,9 +83,6 @@ class ControllerSite extends Controller
 
     }
 
-    
-
-
     public function assist(){
         $assistencia = assistencia::all();
         return view('assistencia',['assistencia' => $assistencia]);
@@ -103,7 +100,6 @@ class ControllerSite extends Controller
         
         $assistencia->titulo = $request->titulo;
         $assistencia->descricao = $request->descricao;
-        $assistencia->texto = $request->texto;
         $assistencia->estado = $request->estado;
 
         $user = auth()->user();
@@ -194,7 +190,33 @@ class ControllerSite extends Controller
         return back()->with('success', 'User type updated successfully.');
     }
 
-
+    public function updateAssistencia(Request $request, $id)
+    {
+        $request->validate([
+            'estado' => 'required|in:aceitar,recusar,resolvido',
+        ]);
+    
+        $estadoMap = [
+            'aceitar' => 'aceite',
+            'recusar' => 'recusado',
+            'resolvido' => 'resolvido',
+        ];
+    
+        $assistencia = Assistencia::findOrFail($id);
+        $estado = $request->input('estado');
+    
+        // Check if the estado is a valid key in the estadoMap
+        if (array_key_exists($estado, $estadoMap)) {
+            $assistencia->estado = $estadoMap[$estado];
+            $assistencia->save();
+    
+            // Redirect back to the page with a success message
+            return back()->with('success', 'Assistencia atualizada com sucesso.');
+        }
+    
+        // If the estado is not valid, redirect back with an error message
+        return back()->with('error', 'Ação inválida.');
+    }
     
 
 }
