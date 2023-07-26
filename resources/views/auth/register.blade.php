@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-
+@section('title', 'Registo')
+@section('content')
 <x-guest-layout>
     <x-jet-authentication-card>
        
@@ -47,3 +48,6 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
+    
+@endsection

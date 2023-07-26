@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Registo')
+@section('content')
 
 <x-guest-layout>
     <x-jet-authentication-card>
@@ -45,7 +47,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Já registado?') }}
+                    
                 </a>
 
                 <x-jet-button class="ml-4">
@@ -55,3 +57,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+@endsection
