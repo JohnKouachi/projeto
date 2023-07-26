@@ -7,7 +7,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('admin.register.submit') }}">
             @csrf
 
             <div>
@@ -21,7 +21,15 @@
             </div>
             <br>
 
-           
+            <div class="mb-3">
+            <label for="user_type_id" class="form-label">User Type</label>
+            <select name="user_type_id" class="form-control" id="user_type_id" required>
+                <option value="1">Administrador</option>
+                <option value="3">Técnico</option>
+                <option value="2">Cliente</option>
+             
+            </select>
+        </div>
 
 
             <div class="mt-4">

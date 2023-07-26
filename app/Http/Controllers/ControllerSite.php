@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\models\publicacao;
 
@@ -224,6 +225,36 @@ class ControllerSite extends Controller
     public function quemSomos(){
 
         return view('/quemSomos');
+    }
+
+
+
+    //ADMIN
+
+    public function showRegistrationForm()
+    {
+        return view('admin.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+            'user_type_id' => 'required|integer|between:1,3', // Ensure the user_type_id is within the specified range (1 to 3)
+        ]);
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'user_type_id' => $request->user_type_id,
+        ]);
+
+        $user->save();
+
+        return redirect('/dashboard')->with('success', 'User registered successfully!');
     }
 
 }

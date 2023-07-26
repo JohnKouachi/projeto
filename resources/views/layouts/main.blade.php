@@ -62,7 +62,12 @@
                         
                         <li><a class="dropdown-item" href="/criarPublicacao">Criar publicação</a></li>
 
-                        <li><a class="dropdown-item" href="/criarAssistencia">Pedir assistencia</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.register') }}">Registar Utilizador</a></li>
+
+      
+
+
+               
 
                     </ul>
                     

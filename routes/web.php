@@ -43,3 +43,17 @@ Route::get('/quemSomos', [ControllerSite::class, 'quemSomos']);
 Route::get('/dashboard', [ControllerSite::class, 'dashboard'])-> middleware('auth');
 
 Route::put('/users/{user}/update-type', [ControllerSite::class, 'updateUserType']);
+
+
+Auth::routes();
+
+Route::get('/register', [ControllerSite::class, 'showRegistrationForm'])->name('admin.register');
+Auth::routes();
+
+
+
+// Other routes...
+
+Route::get('/admin/register', [ControllerSite::class, 'showRegistrationForm'])->name('admin.register');
+Route::post('/admin/register', [ControllerSite::class, 'register'])->name('admin.register.submit');
+
