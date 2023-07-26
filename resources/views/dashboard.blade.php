@@ -19,8 +19,9 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Tipo de Usuário</th>
+                                    <th scope="col">Tipo de Utilizador</th>
                                     <th scope="col">Alterar Tipo</th>
+                                    <th scope="col">Apagar Utilizador</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,8 +50,14 @@
                                                 <button type="submit" class="btn btn-primary">Salvar</button>
                                             </div>
                                         </form>
-
                                         </td>
+                                        <td>
+                                                <form action="/users/{{ $user->id }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                                </form>
+                                            </td>
                                     </tr>
                                 @endforeach
                             </tbody>

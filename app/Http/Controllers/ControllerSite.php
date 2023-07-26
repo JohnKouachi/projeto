@@ -257,4 +257,12 @@ class ControllerSite extends Controller
         return redirect('/dashboard')->with('success', 'User registered successfully!');
     }
 
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+    
+        return redirect()->back()->with('success', 'User deleted successfully!');
+    }
+
 }

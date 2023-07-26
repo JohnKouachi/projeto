@@ -57,3 +57,4 @@ Auth::routes();
 Route::get('/admin/register', [ControllerSite::class, 'showRegistrationForm'])->name('admin.register');
 Route::post('/admin/register', [ControllerSite::class, 'register'])->name('admin.register.submit');
 
+Route::delete('/users/{user}', [ControllerSite::class, 'deleteUser'])->middleware('auth');

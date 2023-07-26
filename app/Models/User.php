@@ -61,9 +61,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function assistencias(){
-        return $this->hasMany('App\Models\assistencia');
-    }
+    public function assistencias()
+{
+    return $this->hasMany(Assistencia::class);
+}
+
+
+    
 
     public function userType()
     {
