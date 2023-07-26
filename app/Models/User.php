@@ -69,4 +69,9 @@ class User extends Authenticatable
         return $this->belongsTo(UserType::class);
     }
 
+    public function publicacoes()
+    {
+        return $this->hasMany(Publicacao::class);
+    }
+
 }

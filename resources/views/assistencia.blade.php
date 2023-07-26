@@ -24,8 +24,9 @@
                         <p class="card-text">Estado: {{ $assistencia -> estado }}</p>
                         
                         <a href="/assistencia/{{ $assistencia -> id }}" class="btn btn-primary">ver pedido </a>
-                        
+                        <br>
                         @if (auth()->check() && auth()->user()->user_type_id === 1)
+                        <br>
                             <form action="/assistencia/{{$assistencia -> id}}" method="POST">
                                 @csrf
                                 @method('DELETE')

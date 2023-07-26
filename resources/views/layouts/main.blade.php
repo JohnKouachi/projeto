@@ -61,13 +61,15 @@
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                         
                         <li><a class="dropdown-item" href="/criarPublicacao">Criar publicação</a></li>
-                        
+
+                        <li><a class="dropdown-item" href="/criarAssistencia">Pedir assistencia</a></li>
+
                     </ul>
                     
                 </li>
                 @endif
 
-                @if (auth()->check() && (auth()->user()->user_type_id === 2 || auth()->user()->user_type_id === 1))
+                @if (auth()->check() && (auth()->user()->user_type_id === 2))
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,7 +85,7 @@
                 </li>
                 @endif
 
-                @if (auth()->check() && (auth()->user()->user_type_id === 3 || auth()->user()->user_type_id === 1 ))
+                @if (auth()->check() && (auth()->user()->user_type_id === 3  ))
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

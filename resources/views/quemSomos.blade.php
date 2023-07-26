@@ -15,13 +15,13 @@
 </head>
 <body>
     <header>
-        <h1>About Us</h1>
+        <h1>Sobre nós</h1>
     </header>
     <section>
         <div class="container">
             <div class="company-info">
-                <img src="logo.png" alt="Company Logo">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget nibh congue, varius sem id, tincidunt ex. Nunc mattis eleifend aliquet. Curabitur vestibulum ultrices felis vel tincidunt. Fusce efficitur, felis a varius consequat, arcu mauris malesuada purus, id pharetra nulla sem vitae sapien.</p>
+                
+                <p>Somos uma empresa de Assistência Técnica, pronta para responder ao seus pedidos. Basta criar uma conta e realizar o seu pedido que rápidamente um técnico responderá a esse pedido.</p>
             </div>
         </div>
     </section>

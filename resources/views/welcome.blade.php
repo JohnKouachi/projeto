@@ -21,7 +21,7 @@
         </header>
         @endguest
 
-        @auth
+        @if (auth()->check() && (auth()->user()->user_type_id === 1 || auth()->user()->user_type_id === 2))
 <!-- Header-->
 <header class="py-5">
             <div class="container px-lg-5">
@@ -34,7 +34,9 @@
                 </div>
             </div>
         </header>
-        @endauth
+        @endif
+
+        @if (auth()->check() )
 
 <div class="container">
     <div class="row">
@@ -58,7 +60,7 @@
     </div>
 </div>
 
-
+@endif
 @endsection
 
 

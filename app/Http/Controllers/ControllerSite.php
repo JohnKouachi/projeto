@@ -30,6 +30,9 @@ class ControllerSite extends Controller
         
         $publicacao->titulo = $request->titulo;
         $publicacao->texto = $request->texto;
+       
+        $user = auth()->user();
+        $publicacao->user_id = $user->id;
 
         
 
@@ -132,7 +135,7 @@ class ControllerSite extends Controller
     public function assistDel($id){
         $assistencia=assistencia::findOrFail($id)->delete();
         
-        return redirect('/assistencia')->with('msg','Pedido apagado!');
+        return redirect('/dashboard')->with('msg','Pedido apagado!');
 
     }
 
@@ -217,6 +220,10 @@ class ControllerSite extends Controller
         // If the estado is not valid, redirect back with an error message
         return back()->with('error', 'Ação inválida.');
     }
-    
+
+    public function quemSomos(){
+
+        return view('/quemSomos');
+    }
 
 }
