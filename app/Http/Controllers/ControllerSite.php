@@ -25,42 +25,30 @@ class ControllerSite extends Controller
         return view('welcome',['publicacao' => $publicacao]);
     }
         
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
         $publicacao = new publicacao;
         
         $publicacao->titulo = $request->titulo;
         $publicacao->texto = $request->texto;
-       
         $user = auth()->user();
         $publicacao->user_id = $user->id;
-
-        
-
-         // Imagem
-         if($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-
-            $requestImage = $request->imagem;
-            $extension = $requestImage->extension();
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-            $requestImage->move(public_path('img/publicacao'), $nomeImagem);
-            $event->imagem = $nomeImagem;
+    
+        // Image upload and save
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $imagePath = $request->file('imagem')->getRealPath();
+            $imageData = base64_encode(file_get_contents($imagePath));
+            $publicacao->imagem = $imageData;
         }
-
+    
         try {
-        
             $publicacao->save();
-        
-            return redirect()->back()->with('mensagem_sucesso_pagina_criar_publicacao', 'Publicação criada com sucesso!');
+            return redirect()->route('home')->with('mensagem_sucesso_pagina_criar_publicacao', 'Publicação criada com sucesso!');
         } catch (\Exception $e) {
             return redirect()->back()->with('mensagem_erro_pagina_criar_publicacao', 'Falha na criação da publicação!');
         }
-
-        
-
-       
-        
     }
+    
         
 
     public function publicacaoDelelte($id){
@@ -259,10 +247,15 @@ class ControllerSite extends Controller
 
 
     public function deleteUser(User $user)
-    {
-        $user->delete();
-    
-        return redirect()->back()->with('success', 'User deleted successfully!');
-    }
+{
+    // Delete associated assistencias and publicações related to the user
+    $user->assistencias()->delete();
+    $user->publicacoes()->delete();
+
+    // Now, delete the user itself
+    $user->delete();
+
+    return redirect()->back()->with('success', 'User and associated records deleted successfully!');
+}
 
 }

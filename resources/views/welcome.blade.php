@@ -38,20 +38,20 @@
 
         @if (auth()->check() )
 
-<div class="container">
+        <div class="container">
     <div class="row">
         <h4>Publicações:</h4>
     </div>
     <br>
     <div class="row">
-        @foreach($publicacao as $publicacao)
+        @foreach($publicacao as $pub)
         <div class="col-sm-4 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Título: {{ $publicacao->titulo }}</h5>
-                    <p class="card-text">Descrição: {{ $publicacao->texto }}</p>
-                    @if($publicacao->imagem != null)
-                    <img style="width: 100%" src="img/publicacao/{{ $publicacao->imagem }}" class="card-img-top" alt="...">
+                    <h5 class="card-title">Título: {{ $pub->titulo }}</h5>
+                    <p class="card-text">Descrição: {{ $pub->texto }}</p>
+                    @if($pub->imagem != null)
+                        <img style="width: 100%" src="data:image/jpeg;base64,{{ $pub->imagem }}" class="card-img-top" alt="...">
                     @endif
                 </div>
             </div>
@@ -59,6 +59,7 @@
         @endforeach
     </div>
 </div>
+
 
 @endif
 @endsection

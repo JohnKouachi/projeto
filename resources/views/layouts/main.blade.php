@@ -67,10 +67,6 @@
                         <li><a class="dropdown-item" href="{{ route('admin.register') }}">Registar Utilizador</a></li>
 
       
-
-
-               
-
                     </ul>
                     
                 </li>
