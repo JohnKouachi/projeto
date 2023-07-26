@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div style="margin-top: 100px;">
                 <h1>Título: {{ $assistencia->titulo }}</h1>
-                <p>Descrição: {{ $assistencia->texto }}</p>
+                <p>Descrição: {{ $assistencia->descricao }}</p>
                 <p>Estado: {{ $assistencia->estado }}</p>
                 <p>Pedido por: {{ $assistenciaDono['name'] }}</p>
                 @if (auth()->check() && (auth()->user()->user_type_id === 1 || auth()->user()->user_type_id === 3))
@@ -30,7 +30,7 @@
                                 <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-primary" name="estado" value="resolvido">Resolvido</button>
+                                    <button type="submit" class="btn btn-success" name="estado" value="resolvido">Resolvido</button>
                                 </form>
                             @endif
                         @endif
@@ -56,7 +56,7 @@
                     <form action="/assistencia/update/{{ $assistencia->id }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-primary" name="estado" value="resolvido">Resolvido</button>
+                        <button type="submit" class="btn btn-success" name="estado" value="resolvido">Resolvido</button>
                     </form>
                 @endif
 
